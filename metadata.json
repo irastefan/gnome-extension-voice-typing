@@ -1,0 +1,15 @@
+{
+  "_generated": "Voice Typing Indicator",
+  "description": "Microphone control for voice-to-text",
+  "name": "Voice Typing Indicator",
+  "shell-version": [
+    "45",
+    "46",
+    "47",
+    "48"
+  ],
+  "uuid": "voice-typing@irastefan",
+  "version": 1,
+  "settings-schema": "org.gnome.shell.extensions.voice-typing",
+  "loader": "module"
+}
