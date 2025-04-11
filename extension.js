@@ -22,7 +22,7 @@ function readStatus() {
 function updateIcon() {
     const status = readStatus();
     const iconName = status === 'recording'
-        ? 'microphone-sensitivity-medium-symbolic' // You can pick any yellow-ish icon
+        ? 'microphone-sensitivity-medium-symbolic' 
         : 'microphone-sensitivity-high-symbolic';
     icon.icon_name = iconName;
 }
@@ -40,7 +40,7 @@ export default class Extension {
 
         const startItem = new PopupMenu.PopupMenuItem('Start Recording');
         startItem.connect('activate', () => {
-            GLib.spawn_command_line_async('python3 /home/irastefan/Documents/projects/whisper-fedora/voice_typing_toggle.py');
+            GLib.spawn_command_line_async('python3 voice_typing_toggle.py');
         });
         indicator.menu.addMenuItem(startItem);
 
