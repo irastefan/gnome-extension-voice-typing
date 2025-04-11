@@ -24,8 +24,8 @@ sudo dnf install wl-clipboard
 
 ### 2. Clone the project
 ```bash
-git clone https://github.com/yourusername/voice-typing-gnome.git
-cd voice-typing-gnome
+git clone https://github.com/irastefan/gnome-extension-voice-typing.git
+cd gnome-extension-voice-typing
 ```
 
 ### 3. Install GNOME extension
@@ -58,10 +58,12 @@ Create `~/.local/share/applications/voice-typing.desktop`:
 ```ini
 [Desktop Entry]
 Name=Voice Typing
-Exec=python3 /home/irastefan/Documents/projects/whisper-fedora/voice_typing_toggle.py
+Exec=python3 /path/to/your/script/voice_typing_toggle.py
 Type=Application
 Terminal=false
 ```
+
+Replace `/path/to/your/script/` with the actual location of your Python script.
 
 This allows launching the script with `gtk-launch voice-typing`.
 
@@ -85,7 +87,7 @@ This allows launching the script with `gtk-launch voice-typing`.
 
 ## 🛠 Project structure
 ```
-voice-typing-gnome/
+gnome-extension-voice-typing/
 ├── voice_typing_toggle.py          # Main script for voice capture and transcription
 ├── extension.js                    # GNOME extension (ESM-based)
 ├── metadata.json                   # Extension metadata
@@ -124,8 +126,8 @@ sudo dnf install wl-clipboard
 
 ### 2. Клонирование проекта
 ```bash
-git clone https://github.com/yourusername/voice-typing-gnome.git
-cd voice-typing-gnome
+git clone https://github.com/irastefan/gnome-extension-voice-typing.git
+cd gnome-extension-voice-typing
 ```
 
 ### 3. Установка GNOME расширения
@@ -158,10 +160,12 @@ gnome-extensions enable voice-typing@irastefan
 ```ini
 [Desktop Entry]
 Name=Voice Typing
-Exec=python3 /home/irastefan/Documents/projects/whisper-fedora/voice_typing_toggle.py
+Exec=python3 /path/to/your/script/voice_typing_toggle.py
 Type=Application
 Terminal=false
 ```
+
+Замените `/path/to/your/script/` на фактический путь к вашему скрипту.
 
 Теперь вы можете запускать скрипт через `gtk-launch voice-typing`.
 
@@ -185,7 +189,7 @@ Terminal=false
 
 ## 🛠 Структура проекта
 ```
-voice-typing-gnome/
+gnome-extension-voice-typing/
 ├── voice_typing_toggle.py          # Главный скрипт записи и распознавания
 ├── extension.js                    # GNOME расширение (ESM)
 ├── metadata.json                   # Описание расширения
