@@ -3,6 +3,7 @@
   "description": "Microphone control for voice-to-text",
   "name": "Voice Typing Indicator",
   "shell-version": [
+    "44",
     "45",
     "46",
     "47",

@@ -1,8 +1,10 @@
-# Voice Typing for GNOME (Fedora + Whisper)
+# Voice Typing for GNOME (Linux + Whisper)
 
 ## 🧠 Description
 This GNOME Shell extension lets you use your voice to type text anywhere — with a single click.
 It uses [OpenAI Whisper](https://github.com/openai/whisper) running **entirely locally**, with no internet connection required.
+
+This project works on **any Linux distribution** with GNOME Shell support — including Fedora, Ubuntu, Debian, Arch, etc. It has been tested on **GNOME 48**, and is expected to work with **GNOME 44 and newer**.
 
 ## 🖥️ Components
 - **Python script**: records voice, transcribes it, copies result to clipboard
@@ -11,15 +13,23 @@ It uses [OpenAI Whisper](https://github.com/openai/whisper) running **entirely l
 ## 📦 Installation
 
 ### 1. Install dependencies:
+#### Fedora (dnf)
 ```bash
-sudo dnf install python3-pip ffmpeg
-pip install --upgrade pip
-pip install openai-whisper sounddevice numpy torch
+sudo dnf install python3-pip ffmpeg wl-clipboard
+```
+#### Debian/Ubuntu (apt)
+```bash
+sudo apt install python3-pip ffmpeg wl-clipboard
+```
+#### Arch (pacman)
+```bash
+sudo pacman -S python-pip ffmpeg wl-clipboard
 ```
 
-> Ensure `wl-clipboard` is installed (for Wayland):
+Then install Python packages:
 ```bash
-sudo dnf install wl-clipboard
+pip install --upgrade pip
+pip install openai-whisper sounddevice numpy torch
 ```
 
 ### 2. Clone the project
@@ -40,7 +50,7 @@ Enable the extension:
 gnome-extensions enable voice-typing@irastefan
 ```
 
-Restart GNOME (X11: `Alt + F2`, then `r`)
+Restart GNOME (X11: `Alt + F2`, then `r`) or logout/login.
 
 ### 4. (Optional) Add keyboard shortcut
 To launch voice typing from anywhere using a custom hotkey:
@@ -99,29 +109,38 @@ MIT License
 
 ---
 
-# Голосовой ввод для GNOME (Fedora + Whisper)
+# Голосовой ввод для GNOME (Linux + Whisper)
 
 ## 🧠 Описание
-Это приложение для GNOME Shell позволяет распознавать речь и превращать её в текст одним нажатием. Идеально для тех, кто хочет вводить текст голосом в любое поле на экране.
+Это расширение для GNOME Shell позволяет вводить текст голосом в любое текстовое поле.
+Оно использует [OpenAI Whisper](https://github.com/openai/whisper), полностью локально, без подключения к интернету.
 
-В основе лежит модель [OpenAI Whisper](https://github.com/openai/whisper), локально выполняемая на вашем компьютере, без отправки данных в интернет.
+Проект работает на **любой Linux-системе с GNOME Shell**: Fedora, Ubuntu, Debian, Arch и др. Он протестирован на **GNOME 48**, и ожидается, что будет работать на **GNOME 44 и выше**.
 
-## 🖥️ Основные компоненты
+## 🖥️ Компоненты
 - **Python-скрипт**: записывает голос, распознаёт текст, копирует в буфер обмена
-- **GNOME расширение**: иконка в панели с меню Start / Stop / Force Stop
+- **GNOME-расширение**: иконка с меню Start / Stop / Force Stop
 
 ## 📦 Установка
 
-### 1. Установка зависимостей:
+### 1. Зависимости:
+#### Fedora
 ```bash
-sudo dnf install python3-pip ffmpeg
-pip install --upgrade pip
-pip install openai-whisper sounddevice numpy torch
+sudo dnf install python3-pip ffmpeg wl-clipboard
+```
+#### Ubuntu/Debian
+```bash
+sudo apt install python3-pip ffmpeg wl-clipboard
+```
+#### Arch Linux
+```bash
+sudo pacman -S python-pip ffmpeg wl-clipboard
 ```
 
-> Убедитесь, что у вас установлен `wl-clipboard` (для Wayland):
+Установка Python-библиотек:
 ```bash
-sudo dnf install wl-clipboard
+pip install --upgrade pip
+pip install openai-whisper sounddevice numpy torch
 ```
 
 ### 2. Клонирование проекта
@@ -130,8 +149,7 @@ git clone https://github.com/irastefan/gnome-extension-voice-typing.git
 cd gnome-extension-voice-typing
 ```
 
-### 3. Установка GNOME расширения
-Скопируйте расширение в директорию:
+### 3. Установка расширения GNOME
 ```bash
 mkdir -p ~/.local/share/gnome-shell/extensions/voice-typing@irastefan
 cp extension.js metadata.json ~/.local/share/gnome-shell/extensions/voice-typing@irastefan/
@@ -142,21 +160,16 @@ cp extension.js metadata.json ~/.local/share/gnome-shell/extensions/voice-typing
 gnome-extensions enable voice-typing@irastefan
 ```
 
-Перезапустите GNOME (если под X11 — `Alt + F2`, затем `r`)
+Перезапустите GNOME (X11: `Alt + F2`, затем `r`) или перелогиньтесь.
 
-### 4. (Необязательно) Добавить шорткат
-Чтобы запускать голосовой ввод по сочетанию клавиш:
-
+### 4. (По желанию) Добавить горячую клавишу
 1. Откройте **Настройки → Клавиатура → Комбинации клавиш**
-2. Пролистайте вниз и нажмите **Пользовательские сочетания**
-3. Добавьте новое:
+2. Добавьте новое сочетание:
    - **Имя**: Voice Typing
    - **Команда**: `gtk-launch voice-typing`
-   - **Сочетание клавиш**: например, <kbd>Super</kbd> + <kbd>V</kbd>
+   - **Клавиши**: например, <kbd>Super</kbd> + <kbd>V</kbd>
 
-> Не забудьте создать `.desktop` файл:
-
-Создайте `~/.local/share/applications/voice-typing.desktop`:
+Создайте файл `~/.local/share/applications/voice-typing.desktop`:
 ```ini
 [Desktop Entry]
 Name=Voice Typing
@@ -165,37 +178,28 @@ Type=Application
 Terminal=false
 ```
 
-Замените `/path/to/your/script/` на фактический путь к вашему скрипту.
-
-Теперь вы можете запускать скрипт через `gtk-launch voice-typing`.
+Замените `/path/to/your/script/` на путь до скрипта.
 
 ## 🚀 Использование
-1. Нажмите на иконку микрофона в панели GNOME
+1. Кликните по иконке микрофона в панели GNOME
 2. Выберите **Start Recording**
-3. Говорите в микрофон (до 60 секунд)
-4. Нажмите **Stop Recording** — текст будет скопирован в буфер обмена
+3. Говорите в микрофон до 60 секунд
+4. Нажмите **Stop Recording** — текст скопируется в буфер
 
 ## ⚙️ Скрипт: voice_typing_toggle.py
-
-### Как работает:
-- Записывает аудио через `sounddevice.rec(...)`
-- При завершении (через кнопку или таймер) сохраняет `.wav`
-- Whisper распознаёт текст и результат копируется в буфер
-
-### Контроль записи:
-- `Stop Recording` создаёт флаг `/tmp/voice_typing_stop.flag`
-- Скрипт отслеживает этот флаг и завершает запись
-- Скрипт также пишет статус в `/tmp/voice_typing_status`, чтобы расширение меняло иконку
+- Записывает голос
+- Останавливается по таймеру или флагу
+- Распознаёт и копирует текст в буфер
+- Управляет статусом через файл `/tmp/voice_typing_status`
 
 ## 🛠 Структура проекта
 ```
 gnome-extension-voice-typing/
-├── voice_typing_toggle.py          # Главный скрипт записи и распознавания
-├── extension.js                    # GNOME расширение (ESM)
-├── metadata.json                   # Описание расширения
-├── debug_audio.wav                 # Последняя записанная речь (для отладки)
+├── voice_typing_toggle.py
+├── extension.js
+├── metadata.json
+├── debug_audio.wav
 ```
 
 ## 📄 Лицензия
 MIT License
-
